@@ -3,8 +3,12 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 const StyledNavbar = styled.nav`
-  background-color: rgba(51, 153, 255, 0.5);
   padding: 30px;
+  background: rgba(8, 106, 249, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  border: 1px solid rgba(77, 52, 52, 0.18);
 
   & ul {
     font-size: 20px;

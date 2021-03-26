@@ -1,6 +1,5 @@
 import { GlobalStyles } from './styles/globalStyling';
 import { Route, Switch } from 'react-router-dom';
-import { Navbar } from './components/Navbar';
 import { Home } from './components/Home';
 import styled from 'styled-components';
 import pool1 from './images/pool1.jpg';
