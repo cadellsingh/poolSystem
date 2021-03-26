@@ -6,8 +6,6 @@ const Container = styled.div`
   background-color: black;
   color: white;
   opacity: 0.9;
-  grid-column: span 1 / auto;
-  /* grid-row: span 3 / auto; */
 `;
 
 const StyledSidebar = styled.div`
@@ -23,6 +21,10 @@ const StyledSidebar = styled.div`
     background-color: #0892d0;
     cursor: pointer;
   }
+
+  & a:hover {
+    text-decoration: none;
+  }
 `;
 
 export const Sidebar = () => {
@@ -36,7 +38,7 @@ export const Sidebar = () => {
           <Link to="/admin/createClass">
             <li>Create class</li>
           </Link>
-          <li>Delete class</li>
+          <li>Log out</li>
         </ul>
       </StyledSidebar>
     </Container>

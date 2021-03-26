@@ -10,7 +10,8 @@ import { CreateClass } from './CreateClass';
 
 const Layout = styled.div`
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  /* grid-template-columns: repeat(4, 1fr); */
+  grid-template-columns: 250px repeat(3, 1fr);
   color: black;
 `;
 
