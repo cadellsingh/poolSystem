@@ -6,6 +6,7 @@ import pool1 from './images/pool1.jpg';
 import { Classes } from './components/Classes';
 import { Schedule } from './components/Schedule';
 import { Login } from './components/Login';
+import { Admin } from './components/Admin/Admin';
 
 const Layout = styled.div`
   height: 100vh;
@@ -28,6 +29,7 @@ const App = () => {
         <Route path="/classes" component={Classes} />
         <Route path="/schedule" component={Schedule} />
         <Route path="/login" component={Login} />
+        <Route path="/admin" component={Admin} />
       </Switch>
       {/* </Layout> */}
     </>

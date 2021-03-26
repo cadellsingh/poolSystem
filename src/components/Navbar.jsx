@@ -36,6 +36,9 @@ export const Navbar = () => {
         <Link to="/login">
           <li>Log in</li>
         </Link>
+        <Link to="/admin">
+          <li>Admin</li>
+        </Link>
       </ul>
     </StyledNavbar>
   );
