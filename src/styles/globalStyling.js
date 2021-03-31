@@ -24,4 +24,13 @@ export const GlobalStyles = createGlobalStyle`
     a:hover {
         text-decoration: underline;
     }
+
+    input, button, textarea, select {
+        border: none;
+        outline: none;
+    }
+
+    input, textarea {
+        font-family: 'Montserrat', sans-serif;
+    }
 `;

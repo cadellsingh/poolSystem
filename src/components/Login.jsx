@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import pool from '../images/pool.jpg';
 import { Navbar } from './Navbar';
@@ -42,15 +42,11 @@ const Form = styled.form`
   & input {
     font-size: 16px;
     padding: 15px;
-    border: none;
-    outline: none;
   }
 
   & button {
     background-color: #0892d0;
     padding: 10px;
-    border: none;
-    outline: none;
     color: white;
   }
 `;
