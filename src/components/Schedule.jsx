@@ -1,8 +1,6 @@
-import { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Navbar } from './Navbar';
 import slippers from '../images/slippers.jpg';
-import firebase from '../firebase/config';
 
 const Container = styled.div`
   color: black;
@@ -18,23 +16,7 @@ const BackgroundImageContainer = styled.div`
   background-size: cover;
 `;
 
-export const Schedule = () => {
-  const [classes, setClasses] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const db = firebase.firestore();
-      const data = await db.collection('classes').get();
-      const classes = data.docs.map((doc) => doc.data());
-
-      setClasses(classes);
-    };
-
-    fetchData();
-  }, []);
-
-  console.log(classes);
-
+export const Schedule = ({ classes }) => {
   return (
     <>
       <BackgroundImageContainer>

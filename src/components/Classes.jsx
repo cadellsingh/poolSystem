@@ -36,7 +36,14 @@ const ListOfClasses = styled.div`
   margin: 20px auto;
 `;
 
-export const Classes = () => {
+export const Classes = ({ classes }) => {
+  console.log(classes);
+
+  const displayClasses = classes.map((eachClass) => {
+    const { id, name, description } = eachClass;
+    return <EachClass key={id} name={name} description={description} />;
+  });
+
   return (
     <>
       <BackgroundImageContainer>
@@ -50,11 +57,7 @@ export const Classes = () => {
         </Container>
       </BackgroundImageContainer>
 
-      <ListOfClasses>
-        <EachClass />
-        <EachClass />
-        <EachClass />
-      </ListOfClasses>
+      <ListOfClasses>{displayClasses}</ListOfClasses>
     </>
   );
 };
