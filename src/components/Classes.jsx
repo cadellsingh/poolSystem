@@ -30,18 +30,23 @@ const Container = styled.div`
 
 const ListOfClasses = styled.div`
   display: grid;
-  grid-template-columns: 1fr;
-  row-gap: 20px;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
   width: 75%;
-  margin: 20px auto;
+  margin: 0 auto;
+`;
+
+const ClassesBackground = styled.div`
+  background: rgba(8, 106, 249, 0.25);
+  padding: 20px 0;
 `;
 
 export const Classes = ({ classes }) => {
   console.log(classes);
 
   const displayClasses = classes.map((eachClass) => {
-    const { id, name, description } = eachClass;
-    return <EachClass key={id} name={name} description={description} />;
+    const { id } = eachClass;
+    return <EachClass key={id} eachClass={eachClass} />;
   });
 
   return (
@@ -57,7 +62,9 @@ export const Classes = ({ classes }) => {
         </Container>
       </BackgroundImageContainer>
 
-      <ListOfClasses>{displayClasses}</ListOfClasses>
+      <ClassesBackground>
+        <ListOfClasses>{displayClasses}</ListOfClasses>
+      </ClassesBackground>
     </>
   );
 };

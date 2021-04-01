@@ -2,10 +2,6 @@ import styled from 'styled-components';
 import { Navbar } from './Navbar';
 import slippers from '../images/slippers.jpg';
 
-const Container = styled.div`
-  color: black;
-`;
-
 const BackgroundImageContainer = styled.div`
   height: 100vh;
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
@@ -16,13 +12,22 @@ const BackgroundImageContainer = styled.div`
   background-size: cover;
 `;
 
+const Container = styled.div`
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid red;
+  text-align: center;
+`;
+
 export const Schedule = ({ classes }) => {
   return (
     <>
       <BackgroundImageContainer>
         <Navbar />
         <Container>
-          <h1>schedi;e</h1>
+          <p>Class</p>
+          <p>Time</p>
+          <p>Instructor</p>
         </Container>
       </BackgroundImageContainer>
     </>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import styled from 'styled-components';
 import pool from '../images/pool.jpg';
 import { Navbar } from './Navbar';
@@ -57,8 +57,6 @@ export const Login = () => {
 
   const handleOnSubmit = (e) => {
     e.preventDefault();
-
-    console.log(username, password);
   };
 
   return (
