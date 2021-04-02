@@ -29,7 +29,6 @@ const ClassDetails = styled.div`
   }
 
   & p:nth-child(4) {
-    /* font-size: 18px; */
     margin: 10px 0;
   }
 `;

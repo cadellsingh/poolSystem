@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import pool from '../images/pool.jpg';
-import { Navbar } from './Navbar';
 
-const BackgroundImageContainer = styled.div`
-  height: 100vh;
+const Layout = styled.div`
+  height: 90vh;
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url(${pool});
   -webkit-background-size: cover;
@@ -13,11 +12,15 @@ const BackgroundImageContainer = styled.div`
   background-size: cover;
 `;
 
+const Container = styled.div`
+  display: flex;
+  justify-content: center;
+  padding-top: 60px;
+`;
+
 const StyledForm = styled.div`
   width: 30%;
-  margin: auto;
   padding: 40px 30px;
-  margin-top: 60px;
   background: rgba(255, 255, 255, 0.25);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(4px);
@@ -60,26 +63,27 @@ export const Login = () => {
   };
 
   return (
-    <BackgroundImageContainer>
-      <Navbar />
-      <StyledForm>
-        <p>Log in</p>
-        <Form onSubmit={handleOnSubmit}>
-          <input
-            type="text"
-            placeholder="Username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-          <input
-            type="password"
-            placeholder="Password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-          <button>Submit</button>
-        </Form>
-      </StyledForm>
-    </BackgroundImageContainer>
+    <Layout>
+      <Container>
+        <StyledForm>
+          <p>Log in</p>
+          <Form onSubmit={handleOnSubmit}>
+            <input
+              type="text"
+              placeholder="Username"
+              value={username}
+              onChange={(e) => setUsername(e.target.value)}
+            />
+            <input
+              type="password"
+              placeholder="Password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <button>Submit</button>
+          </Form>
+        </StyledForm>
+      </Container>
+    </Layout>
   );
 };

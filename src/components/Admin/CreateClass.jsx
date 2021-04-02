@@ -1,64 +1,16 @@
-import { useReducer } from 'react';
+import { useReducer, useState } from 'react';
 import styled from 'styled-components';
+import {
+  FirstDiv,
+  Form,
+  SecondDiv,
+  StyledForm,
+  ThirdDiv,
+} from '../../styles/formStyling';
+import firebase from '../../firebase/config';
 
-const StyledForm = styled.div`
-  width: 65%;
-  margin: auto;
-  padding: 20px 30px;
-  margin-top: 60px;
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-
-  & p {
-    color: white;
-    font-size: 25px;
-  }
-`;
-
-const Form = styled.form`
-  display: grid;
-  grid-template-columns: 1fr;
-  row-gap: 20px;
-  padding: 20px 0;
-
-  & input,
-  select {
-    padding: 15px;
-  }
-
-  & button {
-    background-color: #0892d0;
-    padding: 10px;
-    color: white;
-  }
-`;
-
-const FirstDiv = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: 15px;
-
-  & input:first-child {
-    grid-column: span 2 / auto;
-  }
-`;
-
-const SecondDiv = styled.div`
-  & textarea {
-    width: 100%;
-    padding: 15px;
-    height: 100px;
-  }
-`;
-
-const ThirdDiv = styled.div`
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  column-gap: 15px;
+const SuccessMessage = styled.div`
+  border: 1px solid red;
 `;
 
 const initialClassState = {
@@ -80,7 +32,9 @@ const classReducer = (state, action) => {
 };
 
 export const CreateClass = () => {
+  // deff export to use context api
   const [state, dispatch] = useReducer(classReducer, initialClassState);
+  const [successMsg, setSuccessMsg] = useState('');
 
   const handleOnChange = (e) => {
     dispatch({
@@ -89,10 +43,22 @@ export const CreateClass = () => {
     });
   };
 
-  console.log(state);
-
   const handleOnSubmit = (e) => {
-    e.preventDefault();
+    const classesRef = firebase.firestore().collection('classes');
+    classesRef
+      .add({
+        name: state.name,
+        description: state.description,
+        price: state.price,
+        instructor: state.instructor,
+        time: state.time,
+        day: state.day,
+      })
+      .then((docRef) => {
+        setSuccessMsg('Class Created');
+      });
+
+    // e.preventDefault();
   };
 
   return (
@@ -101,6 +67,7 @@ export const CreateClass = () => {
       <Form onSubmit={handleOnSubmit}>
         <FirstDiv>
           <input
+            required
             type="text"
             name="name"
             placeholder="Class name"
@@ -108,6 +75,7 @@ export const CreateClass = () => {
             onChange={(e) => handleOnChange(e)}
           />
           <input
+            required
             type="number"
             name="price"
             placeholder="Price"
@@ -118,6 +86,7 @@ export const CreateClass = () => {
 
         <SecondDiv>
           <textarea
+            required
             name="description"
             placeholder="Description"
             value={state.description}
@@ -127,12 +96,15 @@ export const CreateClass = () => {
 
         <ThirdDiv>
           <input
+            required
             type="text"
+            name="instructor"
             placeholder="Instructor"
             value={state.instructor}
             onChange={(e) => handleOnChange(e)}
           />
           <select
+            required
             name="time"
             value={state.time}
             onChange={(e) => handleOnChange(e)}
@@ -146,6 +118,7 @@ export const CreateClass = () => {
             <option value="7:30-9:00">7:30-9:00</option>
           </select>
           <select
+            required
             name="day"
             value={state.day}
             onChange={(e) => handleOnChange(e)}

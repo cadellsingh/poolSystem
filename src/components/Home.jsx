@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Navbar } from './Navbar';
-import pool1 from '../images/pool1.jpg';
+import pool from '../images/pool1.jpg';
+import { BackgroundImage } from '../styles/sharedStyles';
 
-const BackgroundImageContainer = styled.div`
-  height: 100vh;
+const Layout = styled(BackgroundImage)`
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url(${pool1});
+    url(${pool});
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -17,7 +16,7 @@ const Details = styled.div`
   width: 70%;
   margin: 0 auto;
   text-align: center;
-  margin-top: 50px;
+  padding-top: 50px;
 
   & p:nth-child(2) {
     margin-top: 10px;
@@ -40,8 +39,7 @@ const Details = styled.div`
 
 export const Home = () => {
   return (
-    <BackgroundImageContainer>
-      <Navbar />
+    <Layout>
       <Details>
         <h1>Gasparillo Swimming Pool</h1>
         <p>"Happiness is a day at the pool"</p>
@@ -58,6 +56,6 @@ export const Home = () => {
           list of activities.
         </p>
       </Details>
-    </BackgroundImageContainer>
+    </Layout>
   );
 };

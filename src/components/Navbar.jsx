@@ -4,11 +4,7 @@ import { Link } from 'react-router-dom';
 
 const StyledNavbar = styled.nav`
   padding: 30px;
-  background: rgba(8, 106, 249, 0.25);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  border: 1px solid rgba(77, 52, 52, 0.18);
+  background-color: #0892d0;
 
   & ul {
     font-size: 20px;

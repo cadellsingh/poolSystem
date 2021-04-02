@@ -9,12 +9,9 @@ const Container = styled.div`
 `;
 
 const StyledSidebar = styled.div`
-  margin-top: 10vh;
-
   & ul li {
     font-size: 20px;
     padding: 15px;
-    margin: 10px 0;
   }
 
   & ul li:hover {

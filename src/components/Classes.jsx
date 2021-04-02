@@ -1,11 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Navbar } from './Navbar';
-import swimming from '../images/swimming.jpg';
 import { EachClass } from './EachClass';
+import swimming from '../images/swimming.jpg';
 
-const BackgroundImageContainer = styled.div`
-  height: 100vh;
+const Layout = styled.div`
+  height: 90vh;
   background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
     url(${swimming});
   -webkit-background-size: cover;
@@ -20,7 +19,7 @@ const Container = styled.div`
 
   & p:nth-child(1) {
     font-size: 20px;
-    margin: 30px 0;
+    padding-top: 30px;
   }
 
   & p:nth-child(2) {
@@ -28,17 +27,16 @@ const Container = styled.div`
   }
 `;
 
+const ClassesBackground = styled.div`
+  padding: 20px 0;
+`;
+
 const ListOfClasses = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 20px;
-  width: 75%;
+  width: 70%;
   margin: 0 auto;
-`;
-
-const ClassesBackground = styled.div`
-  background: rgba(8, 106, 249, 0.25);
-  padding: 20px 0;
 `;
 
 export const Classes = ({ classes }) => {
@@ -51,8 +49,7 @@ export const Classes = ({ classes }) => {
 
   return (
     <>
-      <BackgroundImageContainer>
-        <Navbar />
+      <Layout>
         <Container>
           <p>Classes at GCP</p>
           <p>
@@ -60,8 +57,7 @@ export const Classes = ({ classes }) => {
             INTENSITY CARDIO WORKOUTS. BEGINNER TO ADVANCED SWIMMING CLASSES.
           </p>
         </Container>
-      </BackgroundImageContainer>
-
+      </Layout>
       <ClassesBackground>
         <ListOfClasses>{displayClasses}</ListOfClasses>
       </ClassesBackground>
