@@ -6,6 +6,10 @@ import { AllClasses } from './AllClasses';
 import { Route, Switch } from 'react-router-dom';
 import { CreateClass } from './CreateClass';
 import { UpdateClass } from './UpdateClass';
+import { Navbar } from '../Navbar';
+import { Classes } from '../Classes';
+import { Home } from '../Home';
+import { Schedule } from '../Schedule';
 
 const BackgroundImageContainer = styled.div`
   grid-column: span 3 / auto;
@@ -24,20 +28,22 @@ const Layout = styled.div`
   height: 100vh;
   background-color: #696969;
   background-color: white;
+  color: black;
 `;
 
 export const Admin = () => {
   return (
     <>
-      <Layout>
-        <Sidebar />
-        {/* <AllClasses /> */}
-        <Switch>
-          <Route path="/admin/viewAllClasses" component={AllClasses} />
-          <Route path="/admin/createClass" component={CreateClass} />
-          <Route path="/admin/:classId" component={UpdateClass} />
-        </Switch>
-      </Layout>
+      <Navbar />
+      {/* can display admin page or setting here */}
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/classes" component={Classes} />
+        <Route path="/schedule" component={Schedule} />
+        <Route path="/viewAllClasses" component={AllClasses} />
+        <Route path="/createClass" component={CreateClass} />
+        <Route path="/admin/:classId" component={UpdateClass} />
+      </Switch>
     </>
   );
 };

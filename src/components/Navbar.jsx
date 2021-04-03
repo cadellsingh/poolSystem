@@ -16,6 +16,25 @@ const StyledNavbar = styled.nav`
   }
 `;
 
+const credentials = 'user';
+
+const displayAdminLinks =
+  credentials === 'admin' ? (
+    <>
+      <Link to="/updateClass">
+        <li>Edit Classes</li>
+      </Link>
+      <Link to="/createClass">
+        <li>Create Class</li>
+      </Link>
+      <li>Log out</li>
+    </>
+  ) : (
+    <Link to="/login">
+      <li>Log in</li>
+    </Link>
+  );
+
 export const Navbar = () => {
   return (
     <StyledNavbar>
@@ -29,12 +48,7 @@ export const Navbar = () => {
         <Link to="/schedule">
           <li>Schedule</li>
         </Link>
-        <Link to="/login">
-          <li>Log in</li>
-        </Link>
-        <Link to="/admin">
-          <li>Admin</li>
-        </Link>
+        {displayAdminLinks}
       </ul>
     </StyledNavbar>
   );

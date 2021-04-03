@@ -1,4 +1,4 @@
-import { useReducer, useState } from 'react';
+import { useState, useContext } from 'react';
 import styled from 'styled-components';
 import {
   FirstDiv,
@@ -7,52 +7,27 @@ import {
   StyledForm,
   ThirdDiv,
 } from '../../styles/formStyling';
+import { GlobalContext } from '../../context/GlobalState';
 import firebase from '../../firebase/config';
 
 const SuccessMessage = styled.div`
   border: 1px solid red;
 `;
 
-const initialClassState = {
-  name: '',
-  price: '',
-  description: '',
-  instructor: '',
-  time: '',
-  day: '',
-};
-
-const classReducer = (state, action) => {
-  const { type, value } = action;
-
-  return {
-    ...state,
-    [type]: value,
-  };
-};
-
 export const CreateClass = () => {
-  // deff export to use context api
-  const [state, dispatch] = useReducer(classReducer, initialClassState);
+  const { classState, handleFormChange } = useContext(GlobalContext);
   const [successMsg, setSuccessMsg] = useState('');
-
-  const handleOnChange = (e) => {
-    dispatch({
-      type: e.target.name,
-      value: e.target.value,
-    });
-  };
 
   const handleOnSubmit = (e) => {
     const classesRef = firebase.firestore().collection('classes');
     classesRef
       .add({
-        name: state.name,
-        description: state.description,
-        price: state.price,
-        instructor: state.instructor,
-        time: state.time,
-        day: state.day,
+        name: classState.name,
+        description: classState.description,
+        price: classState.price,
+        instructor: classState.instructor,
+        time: classState.time,
+        day: classState.day,
       })
       .then((docRef) => {
         setSuccessMsg('Class Created');
@@ -71,16 +46,16 @@ export const CreateClass = () => {
             type="text"
             name="name"
             placeholder="Class name"
-            value={state.name}
-            onChange={(e) => handleOnChange(e)}
+            value={classState.name}
+            onChange={(e) => handleFormChange(e)}
           />
           <input
             required
             type="number"
             name="price"
             placeholder="Price"
-            value={state.price}
-            onChange={(e) => handleOnChange(e)}
+            value={classState.price}
+            onChange={(e) => handleFormChange(e)}
           />
         </FirstDiv>
 
@@ -89,8 +64,8 @@ export const CreateClass = () => {
             required
             name="description"
             placeholder="Description"
-            value={state.description}
-            onChange={(e) => handleOnChange(e)}
+            value={classState.description}
+            onChange={(e) => handleFormChange(e)}
           />
         </SecondDiv>
 
@@ -100,14 +75,14 @@ export const CreateClass = () => {
             type="text"
             name="instructor"
             placeholder="Instructor"
-            value={state.instructor}
-            onChange={(e) => handleOnChange(e)}
+            value={classState.instructor}
+            onChange={(e) => handleFormChange(e)}
           />
           <select
             required
             name="time"
-            value={state.time}
-            onChange={(e) => handleOnChange(e)}
+            value={classState.time}
+            onChange={(e) => handleFormChange(e)}
           >
             <option value="" disabled hidden>
               Time
@@ -120,8 +95,8 @@ export const CreateClass = () => {
           <select
             required
             name="day"
-            value={state.day}
-            onChange={(e) => handleOnChange(e)}
+            value={classState.day}
+            onChange={(e) => handleFormChange(e)}
           >
             <option value="" disabled hidden>
               Day

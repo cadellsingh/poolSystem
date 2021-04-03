@@ -1,5 +1,7 @@
+import { useContext } from 'react';
 import styled from 'styled-components';
 import swimming from '../images/swimming5.jpg';
+import { GlobalContext } from '../context/GlobalState';
 
 const Layout = styled.div`
   height: 90vh;
@@ -50,7 +52,9 @@ const Filters = styled.div`
   }
 `;
 
-export const Schedule = ({ classes }) => {
+export const Schedule = () => {
+  const { classes } = useContext(GlobalContext);
+
   const displaySchedule = classes.map((eachClass) => {
     const { name, time, day } = eachClass;
 

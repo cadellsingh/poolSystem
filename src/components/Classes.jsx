@@ -1,7 +1,8 @@
-import React from 'react';
+import { useContext } from 'react';
 import styled from 'styled-components';
 import { EachClass } from './EachClass';
 import swimming from '../images/swimming.jpg';
+import { GlobalContext } from '../context/GlobalState';
 
 const Layout = styled.div`
   height: 90vh;
@@ -39,8 +40,8 @@ const ListOfClasses = styled.div`
   margin: 0 auto;
 `;
 
-export const Classes = ({ classes }) => {
-  console.log(classes);
+export const Classes = () => {
+  const { classes } = useContext(GlobalContext);
 
   const displayClasses = classes.map((eachClass) => {
     const { id } = eachClass;
