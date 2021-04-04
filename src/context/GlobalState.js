@@ -1,12 +1,32 @@
 import { createContext, useReducer, useState, useEffect } from 'react';
 import { classReducer, initialClassState } from './createClassReducer';
 import firebase from '../firebase/config';
+import { auth } from '../firebase/config';
 
 export const GlobalContext = createContext();
 
 export const GlobalProvider = ({ children }) => {
   const [classState, dispatch] = useReducer(classReducer, initialClassState);
   const [classes, setClasses] = useState([]);
+  const [currentAdmin, setCurrentAdmin] = useState();
+  const [loading, setLoading] = useState(true);
+
+  const login = (email, password) => {
+    return auth.signInWithEmailAndPassword(email, password);
+  };
+
+  const logout = () => {
+    return auth.signOut();
+  };
+
+  useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged((admin) => {
+      setCurrentAdmin(admin);
+      setLoading(false);
+    });
+
+    return unsubscribe;
+  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,9 +53,12 @@ export const GlobalProvider = ({ children }) => {
         classState: classState,
         handleFormChange: handleFormChange,
         classes: classes,
+        currentAdmin: currentAdmin,
+        login: login,
+        logout: logout,
       }}
     >
-      {children}
+      {!loading && children}
     </GlobalContext.Provider>
   );
 };

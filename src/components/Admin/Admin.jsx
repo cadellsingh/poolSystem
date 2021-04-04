@@ -10,6 +10,7 @@ import { Navbar } from '../Navbar';
 import { Classes } from '../Classes';
 import { Home } from '../Home';
 import { Schedule } from '../Schedule';
+import { PrivateRoute } from '../PrivateRoute';
 
 const BackgroundImageContainer = styled.div`
   grid-column: span 3 / auto;
@@ -34,15 +35,14 @@ const Layout = styled.div`
 export const Admin = () => {
   return (
     <>
-      <Navbar />
-      {/* can display admin page or setting here */}
+      <h1>testing</h1>
       <Switch>
-        <Route exact path="/" component={Home} />
-        <Route path="/classes" component={Classes} />
-        <Route path="/schedule" component={Schedule} />
-        <Route path="/viewAllClasses" component={AllClasses} />
+        <PrivateRoute path="/editClasses" component={AllClasses} />
+        <PrivateRoute path="/createClass" component={CreateClass} />
+        <PrivateRoute path="/:classID" component={UpdateClass} />
+        {/* <Route path="/viewAllClasses" component={AllClasses} />
         <Route path="/createClass" component={CreateClass} />
-        <Route path="/admin/:classId" component={UpdateClass} />
+        <Route path="/admin/:classId" component={UpdateClass} /> */}
       </Switch>
     </>
   );

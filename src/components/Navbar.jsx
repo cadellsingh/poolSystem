@@ -1,6 +1,7 @@
-import React from 'react';
+import { useContext } from 'react';
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
+import { GlobalContext } from '../context/GlobalState';
 
 const StyledNavbar = styled.nav`
   padding: 30px;
@@ -16,18 +17,30 @@ const StyledNavbar = styled.nav`
   }
 `;
 
-const credentials = 'user';
+export const Navbar = () => {
+  const { currentAdmin, logout } = useContext(GlobalContext);
+  const history = useHistory();
 
-const displayAdminLinks =
-  credentials === 'admin' ? (
+  console.log(currentAdmin);
+
+  const handleLogOut = async () => {
+    try {
+      await logout();
+      history.push('/');
+    } catch {
+      console.log('failed to log out');
+    }
+  };
+
+  const displayAdminLinks = currentAdmin ? (
     <>
-      <Link to="/updateClass">
+      <Link to="/editClasses">
         <li>Edit Classes</li>
       </Link>
       <Link to="/createClass">
         <li>Create Class</li>
       </Link>
-      <li>Log out</li>
+      <Link onClick={handleLogOut}>Log out</Link>
     </>
   ) : (
     <Link to="/login">
@@ -35,7 +48,6 @@ const displayAdminLinks =
     </Link>
   );
 
-export const Navbar = () => {
   return (
     <StyledNavbar>
       <ul>

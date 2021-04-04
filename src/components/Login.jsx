@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import styled from 'styled-components';
 import pool from '../images/pool.jpg';
+import { GlobalContext } from '../context/GlobalState';
+import { useHistory } from 'react-router-dom';
 
 const Layout = styled.div`
   height: 90vh;
@@ -57,9 +59,20 @@ const Form = styled.form`
 export const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+  const [errorMsg, setErrorMsg] = useState('');
+  const { login } = useContext(GlobalContext);
+  const history = useHistory();
 
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      setErrorMsg('');
+      await login(username, password);
+      history.push('/editClasses');
+    } catch {
+      setErrorMsg('Failed to log in');
+    }
   };
 
   return (

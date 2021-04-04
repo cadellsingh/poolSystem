@@ -11,6 +11,7 @@ const Container = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   padding: 10px;
+  color: black;
 `;
 
 const ClassDetails = styled.div`
