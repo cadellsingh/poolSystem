@@ -1,7 +1,6 @@
 import { createContext, useReducer, useState, useEffect } from 'react';
 import { classReducer, initialClassState } from './createClassReducer';
-import firebase from '../firebase/config';
-import { auth } from '../firebase/config';
+import firebase, { auth } from '../firebase/config';
 
 export const GlobalContext = createContext();
 

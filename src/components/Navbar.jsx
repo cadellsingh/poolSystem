@@ -4,8 +4,11 @@ import { Link, useHistory } from 'react-router-dom';
 import { GlobalContext } from '../context/GlobalState';
 
 const StyledNavbar = styled.nav`
-  padding: 30px;
   background-color: #0892d0;
+  background-color: #287094;
+  height: 10vh;
+  display: flex;
+  align-items: center;
 
   & ul {
     font-size: 20px;

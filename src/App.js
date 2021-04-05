@@ -31,4 +31,6 @@ const App = () => {
   );
 };
 
+// dont need admin component
+
 export default App;

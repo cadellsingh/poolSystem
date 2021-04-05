@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import pool from '../images/pool.jpg';
 import { GlobalContext } from '../context/GlobalState';
 import { useHistory } from 'react-router-dom';
+import { CardContainer } from '../styles/sharedStyles';
 
 const Layout = styled.div`
   height: 90vh;
@@ -12,23 +13,18 @@ const Layout = styled.div`
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
+  display: flex;
+  justify-content: center;
 `;
 
 const Container = styled.div`
-  display: flex;
-  justify-content: center;
-  padding-top: 60px;
+  width: 40%;
 `;
 
-const StyledForm = styled.div`
-  width: 30%;
+const StyledForm = styled(CardContainer)`
+  margin-top: 50px;
   padding: 40px 30px;
   background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
 
   & p {
     font-size: 20px;
@@ -41,7 +37,7 @@ const Form = styled.form`
   flex-direction: column;
 
   & input:nth-child(2) {
-    margin: 10px 0;
+    margin: 15px 0;
   }
 
   & input {

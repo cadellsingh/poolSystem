@@ -2,30 +2,25 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import firebase from '../../firebase/config';
+import { CardContainer } from '../../styles/sharedStyles';
 
 // repeated styles on Schedule and AllClasses components
 
 const Container = styled.div`
+  width: 90%;
   grid-column: span 3 / auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  padding: 10px;
-  color: black;
+  /* padding: 20px; */
+  margin: 20px auto;
 `;
 
-const ClassDetails = styled.div`
+const ClassDetails = styled(CardContainer)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   text-align: center;
-  padding: 20px;
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
   color: black;
 
   & p:nth-child(1) {
@@ -46,18 +41,27 @@ const ClassDetails = styled.div`
 const Buttons = styled.div`
   display: flex;
   justify-content: space-between;
-  font-size: 16px;
+  margin-top: 10px;
 
-  & a {
-    margin: auto 0;
-    padding: 5px;
-    background-color: green;
+  & button {
+    padding: 10px;
+    font-size: 16px;
+    color: white;
+    border-radius: 5px;
   }
 
-  & p:nth-child(2) {
-    font-size: 16px;
-    padding: 5px;
-    background-color: red;
+  & button:hover {
+    cursor: pointer;
+  }
+
+  & button:nth-child(1) {
+    color: #0892d0;
+    border: 1px solid #0892d0;
+  }
+
+  & button:nth-child(2) {
+    color: #d11a2a;
+    border: 1px solid #d11a2a;
   }
 `;
 
@@ -90,12 +94,16 @@ export const AllClasses = () => {
         </p>
 
         <Buttons>
-          <Link to={`/admin/${id}`}>Update Class</Link>
-          <p>Delete Class</p>
+          <Link to={`/admin/${id}`}>
+            <button>Update Class</button>
+          </Link>
+          <button>Delete Class</button>
         </Buttons>
       </ClassDetails>
     );
   });
+
+  // can add search functionality somewhere
 
   return <Container>{displayClasses}</Container>;
 };

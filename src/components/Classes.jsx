@@ -30,13 +30,14 @@ const Container = styled.div`
 
 const ClassesBackground = styled.div`
   padding: 20px 0;
+  width: 90%;
+  margin: 0 auto;
 `;
 
 const ListOfClasses = styled.div`
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  width: 70%;
   margin: 0 auto;
 `;
 
