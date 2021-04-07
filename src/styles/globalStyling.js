@@ -7,14 +7,14 @@ export const GlobalStyles = createGlobalStyle`
         box-sizing: border-box;
     }
 
-    // look at responsive font sizes
-
+    html {
+        font-size: 62.5%;
+        background-color: #203647; 
+    }
     
-
     body {
         font-family: 'Montserrat', sans-serif;
-        color: white;
-        /* background-color: darkblue; */
+        color: white; 
     }
 
     a  {

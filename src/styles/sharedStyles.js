@@ -17,3 +17,10 @@ export const CardContainer = styled.div`
   border: 1px solid rgba(255, 255, 255, 0.18);
   padding: 20px;
 `;
+
+export const AdminBackground = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90vh;
+`;

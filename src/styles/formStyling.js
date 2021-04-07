@@ -1,11 +1,10 @@
 import styled from 'styled-components';
 
 export const StyledForm = styled.div`
-  grid-column: span 3 / auto;
-  margin: auto;
-  padding: 20px 30px;
-  margin-top: 60px;
+  width: 50%;
+  padding: 30px;
   background: rgba(255, 255, 255, 0.25);
+  background-color: #f5f5f5;
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
   backdrop-filter: blur(4px);
   -webkit-backdrop-filter: blur(4px);
@@ -14,7 +13,7 @@ export const StyledForm = styled.div`
 
   & p {
     color: black;
-    font-size: 25px;
+    font-size: 2.5rem;
   }
 `;
 
@@ -40,11 +39,11 @@ export const Form = styled.form`
     background-color: #0892d0;
     padding: 10px;
     color: white;
+    font-size: 1.6rem;
   }
 
   & button:hover {
     cursor: pointer;
-    /* border: 1px solid red; */
   }
 `;
 
