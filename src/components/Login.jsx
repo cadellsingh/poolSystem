@@ -50,6 +50,20 @@ const Form = styled.form`
     padding: 10px;
     color: white;
   }
+
+  & button:hover {
+    cursor: pointer;
+  }
+`;
+
+const ErrorMsg = styled.p`
+  text-align: center;
+  padding: 10px;
+  background-color: #d11a2a;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  font-size: 1.8rem;
+  color: white;
 `;
 
 export const Login = () => {
@@ -75,15 +89,18 @@ export const Login = () => {
     <Layout>
       <Container>
         <StyledForm>
+          {errorMsg ? <ErrorMsg>{errorMsg}</ErrorMsg> : null}
           <p>Log in</p>
           <Form onSubmit={handleOnSubmit}>
             <input
+              required
               type="text"
               placeholder="Username"
               value={username}
               onChange={(e) => setUsername(e.target.value)}
             />
             <input
+              required
               type="password"
               placeholder="Password"
               value={password}
