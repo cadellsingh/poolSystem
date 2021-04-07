@@ -18,21 +18,25 @@ const Details = styled.div`
   text-align: center;
   padding-top: 50px;
 
+  & h1 {
+    font-size: 4rem;
+  }
+
   & p:nth-child(2) {
     margin-top: 10px;
     margin-bottom: 45px;
-    font-size: 20px;
+    font-size: 2rem;
     font-style: italic;
   }
 
   & p:nth-child(3) {
-    font-size: 22px;
+    font-size: 2.2rem;
     font-weight: bold;
     margin-bottom: 15px;
   }
 
   & p:nth-child(4) {
-    font-size: 25px;
+    font-size: 2.5rem;
     line-height: 40px;
   }
 `;

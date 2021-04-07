@@ -19,22 +19,22 @@ const Container = styled.div`
   margin: 0 auto;
 
   & p:nth-child(1) {
-    font-size: 20px;
+    font-size: 2rem;
     padding-top: 30px;
   }
 
   & p:nth-child(2) {
-    font-size: 70px;
+    font-size: 7rem;
   }
 `;
 
 const ClassesBackground = styled.div`
-  padding: 20px 0;
-  width: 90%;
-  margin: 0 auto;
+  background-color: white;
 `;
 
 const ListOfClasses = styled.div`
+  width: 90%;
+  padding: 20px 0;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;

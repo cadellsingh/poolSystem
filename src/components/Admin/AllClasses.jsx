@@ -4,16 +4,15 @@ import styled from 'styled-components';
 import firebase from '../../firebase/config';
 import { CardContainer } from '../../styles/sharedStyles';
 
-// repeated styles on Schedule and AllClasses components
-
 const Container = styled.div`
   width: 90%;
   grid-column: span 3 / auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  /* padding: 20px; */
-  margin: 20px auto;
+  margin: 0 auto;
+  padding: 20px 0;
+  font-size: 1.6rem;
 `;
 
 const ClassDetails = styled(CardContainer)`
@@ -24,12 +23,11 @@ const ClassDetails = styled(CardContainer)`
   color: black;
 
   & p:nth-child(1) {
-    font-size: 20px;
+    font-size: 2.2rem;
     font-weight: 900;
   }
 
   & p:nth-child(2) {
-    font-size: 18px;
     margin: 10px 0;
   }
 
@@ -80,6 +78,12 @@ export const AllClasses = () => {
     fetchData();
   }, []);
 
+  const handleDelete = (id) => {
+    const classRef = firebase.firestore().collection('classes');
+
+    classRef.doc(id).delete();
+  };
+
   const displayClasses = classes.map((eachClass) => {
     const { name, instructor, price, id, description, day, time } = eachClass;
 
@@ -94,10 +98,10 @@ export const AllClasses = () => {
         </p>
 
         <Buttons>
-          <Link to={`/admin/${id}`}>
+          <Link to={`/${id}`}>
             <button>Update Class</button>
           </Link>
-          <button>Delete Class</button>
+          <button onClick={() => handleDelete(id)}>Delete Class</button>
         </Buttons>
       </ClassDetails>
     );

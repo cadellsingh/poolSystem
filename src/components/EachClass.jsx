@@ -12,14 +12,16 @@ const ClassDetails = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  font-size: 1.6rem;
 
   & p:nth-child(1) {
-    font-size: 20px;
+    font-size: 2rem;
+
     font-weight: 900;
   }
 
   & p:nth-child(2) {
-    font-size: 18px;
+    font-size: 1.9rem;
     margin: 10px 0;
   }
 

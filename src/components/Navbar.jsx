@@ -4,14 +4,13 @@ import { Link, useHistory } from 'react-router-dom';
 import { GlobalContext } from '../context/GlobalState';
 
 const StyledNavbar = styled.nav`
-  background-color: #0892d0;
   background-color: #287094;
   height: 10vh;
   display: flex;
   align-items: center;
 
   & ul {
-    font-size: 20px;
+    font-size: 2rem;
     width: 80%;
     margin: 0 auto;
     display: flex;
@@ -20,11 +19,16 @@ const StyledNavbar = styled.nav`
   }
 `;
 
+const Logout = styled.li`
+  :hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+`;
+
 export const Navbar = () => {
   const { currentAdmin, logout } = useContext(GlobalContext);
   const history = useHistory();
-
-  console.log(currentAdmin);
 
   const handleLogOut = async () => {
     try {
@@ -43,7 +47,7 @@ export const Navbar = () => {
       <Link to="/createClass">
         <li>Create Class</li>
       </Link>
-      <Link onClick={handleLogOut}>Log out</Link>
+      <Logout onClick={handleLogOut}>Log out</Logout>
     </>
   ) : (
     <Link to="/login">
