@@ -5,12 +5,11 @@ import { GlobalContext } from '../context/GlobalState';
 const Container = styled.div`
   font-size: 2.3rem;
   width: 90%;
-  margin: 0 auto;
+  margin: 30px auto;
   color: white;
   display: grid;
   grid-template-columns: 1fr;
   row-gap: 20px;
-  margin-top: 30px;
   border: 1px solid grey;
   border-radius: 10px;
 `;
@@ -96,8 +95,8 @@ export const Schedule = () => {
 
   const displaySchedule = Object.entries(days).map(([key, value], idx) => {
     return (
-      <ScheduleContainer>
-        <Day key={idx}>
+      <ScheduleContainer key={idx}>
+        <Day>
           <p>{key}</p>
         </Day>
         <Classes>

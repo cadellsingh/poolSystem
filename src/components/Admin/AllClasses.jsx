@@ -1,16 +1,21 @@
-import { useState, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 import firebase from '../../firebase/config';
 import { CardContainer } from '../../styles/sharedStyles';
+import { GlobalContext } from '../../context/GlobalState';
+import { SearchInput } from '../SearchInput';
 
 const Container = styled.div`
   width: 90%;
+  margin: 0 auto;
+`;
+
+const ClassContainer = styled.div`
   grid-column: span 3 / auto;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  margin: 0 auto;
   padding: 20px 0;
   font-size: 1.6rem;
 `;
@@ -64,19 +69,8 @@ const Buttons = styled.div`
 `;
 
 export const AllClasses = () => {
-  const [classes, setClasses] = useState([]);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const db = firebase.firestore();
-      const data = await db.collection('classes').get();
-      const classes = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-
-      setClasses(classes);
-    };
-
-    fetchData();
-  }, []);
+  const { classes } = useContext(GlobalContext);
+  const [input, setInput] = useState('');
 
   const handleDelete = (id) => {
     const classRef = firebase.firestore().collection('classes');
@@ -84,7 +78,20 @@ export const AllClasses = () => {
     classRef.doc(id).delete();
   };
 
-  const displayClasses = classes.map((eachClass) => {
+  const handleOnChange = (e) => {
+    setInput(e.target.value);
+  };
+
+  const filteredClasses = classes.filter((eachClass) => {
+    const { name, instructor, price } = eachClass;
+    return (
+      name.toLowerCase().includes(input) ||
+      instructor.toLowerCase().includes(input) ||
+      price.includes(input)
+    );
+  });
+
+  const displayClasses = filteredClasses.map((eachClass) => {
     const { name, instructor, price, id, description, day, time } = eachClass;
 
     return (
@@ -107,7 +114,10 @@ export const AllClasses = () => {
     );
   });
 
-  // can add search functionality somewhere
-
-  return <Container>{displayClasses}</Container>;
+  return (
+    <Container>
+      <SearchInput input={input} handleOnChange={handleOnChange} />
+      <ClassContainer>{displayClasses}</ClassContainer>
+    </Container>
+  );
 };

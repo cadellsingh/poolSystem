@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import styled from 'styled-components';
 import { useParams } from 'react-router-dom';
 import firebase from '../../firebase/config';
@@ -10,6 +10,7 @@ import {
   ThirdDiv,
 } from '../../styles/formStyling';
 import { AdminBackground } from '../../styles/sharedStyles';
+import { GlobalContext } from '../../context/GlobalState';
 
 const SuccessMsg = styled.p`
   text-align: center;
@@ -22,7 +23,8 @@ const SuccessMsg = styled.p`
 `;
 
 export const UpdateClass = () => {
-  const [className, setClassName] = useState('');
+  // maybe use usereducer instead
+  const [name, setName] = useState('');
   const [time, setTime] = useState('');
   const [price, setPrice] = useState('');
   const [description, setDescription] = useState('');
@@ -30,35 +32,25 @@ export const UpdateClass = () => {
   const [day, setDay] = useState('');
   const [successMsg, setSuccessMsg] = useState('');
 
+  const { classes } = useContext(GlobalContext);
+
   const { classID } = useParams();
 
+  const getClass = classes.find((eachClass) => {
+    const { id } = eachClass;
+
+    return classID === id;
+  });
+
   useEffect(() => {
-    const fetchData = async () => {
-      const db = firebase.firestore();
-      const docRef = await db.collection('classes').doc(classID);
-
-      docRef.get().then((doc) => {
-        if (doc.exists) {
-          const {
-            name,
-            time,
-            price,
-            description,
-            instructor,
-            day,
-          } = doc.data();
-
-          setClassName(name);
-          setDay(day);
-          setTime(time);
-          setDescription(description);
-          setInstructor(instructor);
-          setPrice(price);
-        }
-      });
-    };
-
-    fetchData();
+    if (getClass) {
+      setName(getClass.name);
+      setDay(getClass.day);
+      setTime(getClass.time);
+      setDescription(getClass.description);
+      setInstructor(getClass.instructor);
+      setPrice(getClass.price);
+    }
   }, []);
 
   const handleOnSubmit = (e) => {
@@ -66,7 +58,7 @@ export const UpdateClass = () => {
     classRef
       .doc(classID)
       .update({
-        name: className,
+        name: name,
         description: description,
         price: price,
         instructor: instructor,
@@ -92,8 +84,8 @@ export const UpdateClass = () => {
               type="text"
               name="name"
               placeholder="Class name"
-              value={className}
-              onChange={(e) => setClassName(e.target.value)}
+              value={name}
+              onChange={(e) => setName(e.target.value)}
             />
             <input
               required

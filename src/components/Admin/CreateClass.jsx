@@ -10,6 +10,7 @@ import {
 import { GlobalContext } from '../../context/GlobalState';
 import firebase from '../../firebase/config';
 import { AdminBackground } from '../../styles/sharedStyles';
+import { createClass } from '../../firebase/apis';
 
 const SuccessMsg = styled.div`
   text-align: center;
@@ -24,19 +25,23 @@ export const CreateClass = () => {
   const [successMsg, setSuccessMsg] = useState('');
 
   const handleOnSubmit = (e) => {
-    const classesRef = firebase.firestore().collection('classes');
-    classesRef
-      .add({
-        name: classState.name,
-        description: classState.description,
-        price: classState.price,
-        instructor: classState.instructor,
-        time: classState.time,
-        day: classState.day,
-      })
-      .then((docRef) => {
-        setSuccessMsg('Class Created');
-      });
+    // const classesRef = firebase.firestore().collection('classes');
+    // classesRef
+    //   .add({
+    //     name: classState.name,
+    //     description: classState.description,
+    //     price: classState.price,
+    //     instructor: classState.instructor,
+    //     time: classState.time,
+    //     day: classState.day,
+    //   })
+    //   .then((docRef) => {
+    //     setSuccessMsg('Class Created');
+    //   });
+
+    createClass(classState).then((doc) => {
+      setSuccessMsg('Class Created');
+    });
 
     e.preventDefault();
   };

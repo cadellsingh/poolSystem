@@ -1,14 +1,15 @@
 import { createContext, useReducer, useState, useEffect } from 'react';
 import { classReducer, initialClassState } from './createClassReducer';
 import firebase, { auth } from '../firebase/config';
+import { GetClasses } from '../firebase/apis';
 
 export const GlobalContext = createContext();
 
 export const GlobalProvider = ({ children }) => {
   const [classState, dispatch] = useReducer(classReducer, initialClassState);
-  const [classes, setClasses] = useState([]);
   const [currentAdmin, setCurrentAdmin] = useState();
   const [loading, setLoading] = useState(true);
+  const classes = GetClasses();
 
   const login = (email, password) => {
     return auth.signInWithEmailAndPassword(email, password);
@@ -25,18 +26,6 @@ export const GlobalProvider = ({ children }) => {
     });
 
     return unsubscribe;
-  }, []);
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const db = firebase.firestore();
-      const data = await db.collection('classes').get();
-      const classes = data.docs.map((doc) => ({ ...doc.data(), id: doc.id }));
-
-      setClasses(classes);
-    };
-
-    fetchData();
   }, []);
 
   const handleFormChange = (e) => {
